@@ -568,75 +568,24 @@ export function MorlaContactPage() {
 
 function AuthPageShell({ children }) {
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.9),transparent_28%),linear-gradient(180deg,#ffffff_0%,#fbfcfe_48%,#f3f5f9_100%)] text-slate-900">
-      <AuthTopbar />
-      <main className="mx-auto flex max-w-7xl justify-center px-4 pb-16 pt-16 sm:px-6 lg:px-8">{children}</main>
-    </div>
-  );
-}
-
-function AuthTopbar() {
-  return (
-    <div className="border-b border-slate-200/70 bg-white/70 backdrop-blur-xl">
-      <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4 rounded-[2rem] border border-slate-200 bg-white px-4 py-3 shadow-[0_16px_44px_rgba(15,23,42,0.06)] sm:px-5">
-          <Link className="flex items-center gap-3" href="/">
-            <img
-              alt="Morla logo"
-              className="size-11 rounded-full border border-slate-100 object-cover shadow-[0_10px_24px_rgba(15,23,42,0.08)]"
-              src="/morla-mark.svg"
-            />
-            <div className="text-left">
-              <p className="font-display text-[1.35rem] tracking-[-0.04em] text-slate-950 sm:text-[1.5rem]">Morla Coffee Shop</p>
-              <p className="text-[0.66rem] uppercase tracking-[0.34em] text-slate-500">Premium coffee</p>
-            </div>
-          </Link>
-
-          <nav className="hidden items-center gap-1 lg:flex">
-            {[
-              ["Home", "/"],
-              ["Menu", "/menu"],
-              ["About", "/#about"],
-            ].map(([label, href]) => (
-              <Link
-                className="rounded-full px-4 py-2 text-[0.95rem] font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950"
-                href={href}
-                key={href}
-              >
-                {label}
-              </Link>
-            ))}
-            <Button asChild className="h-10 rounded-full px-5 shadow-none" variant="outline">
-              <Link href="/contact">
-                Contact
-                <ChevronDown className="size-4" />
-              </Link>
-            </Button>
-          </nav>
-
-          <div className="hidden items-center gap-2 md:flex">
-            <Button asChild className="h-11 rounded-full border-slate-200 bg-white px-5 text-slate-900 shadow-none" variant="outline">
-              <Link href="/signin">Login</Link>
-            </Button>
-            <Button asChild className="h-11 rounded-full border-slate-200 bg-white px-5 text-slate-900 shadow-none" variant="outline">
-              <Link href="/signup">Sign Up</Link>
-            </Button>
-          </div>
-        </div>
-      </div>
+    <div className="flex min-h-[100svh] flex-col overflow-hidden bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.9),transparent_28%),linear-gradient(180deg,#ffffff_0%,#fbfcfe_48%,#f3f5f9_100%)] text-slate-900">
+      <MorlaSiteHeader />
+      <main className="mx-auto flex flex-1 max-w-7xl items-center justify-center px-4 py-2 sm:px-6 lg:px-8">
+        {children}
+      </main>
     </div>
   );
 }
 
 function AuthField({ icon: Icon, label, placeholder, type = "text", autoComplete }) {
   return (
-    <label className="block space-y-2">
-      <span className="text-[0.98rem] font-medium text-slate-950">{label}</span>
+    <label className="block space-y-1.5">
+      <span className="text-[0.82rem] font-medium text-slate-950">{label}</span>
       <div className="relative">
-        <Icon className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-500" />
+        <Icon className="pointer-events-none absolute left-4 top-1/2 size-3.5 -translate-y-1/2 text-slate-500" />
         <Input
           autoComplete={autoComplete}
-          className="h-14 rounded-[1.15rem] border-slate-200 bg-[#f7fafc] pl-12 pr-4 text-[0.98rem] text-slate-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] placeholder:text-slate-400 focus:bg-white"
+          className="h-11 rounded-[1rem] border-slate-200 bg-[#f7fafc] pl-12 pr-4 text-[0.88rem] text-slate-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] placeholder:text-slate-400 focus:bg-white"
           placeholder={placeholder}
           type={type}
         />
@@ -647,7 +596,7 @@ function AuthField({ icon: Icon, label, placeholder, type = "text", autoComplete
 
 function AuthDivider() {
   return (
-    <div className="flex items-center gap-4 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-slate-400">
+    <div className="flex items-center gap-4 py-0 text-[0.64rem] font-semibold uppercase tracking-[0.28em] text-slate-400">
       <span className="h-px flex-1 bg-slate-200" />
       <span>OR CONTINUE WITH</span>
       <span className="h-px flex-1 bg-slate-200" />
@@ -657,7 +606,7 @@ function AuthDivider() {
 
 function GoogleButton({ label }) {
   return (
-    <Button className="h-12 rounded-full border-slate-200 bg-white text-slate-950 shadow-none hover:bg-slate-50" type="button" variant="outline">
+    <Button className="h-10 rounded-full border-slate-200 bg-white text-slate-950 shadow-none hover:bg-slate-50" type="button" variant="outline">
       <span className="inline-flex size-6 items-center justify-center rounded-full border border-slate-300 text-sm font-semibold">G</span>
       <span>{label}</span>
     </Button>
@@ -667,23 +616,20 @@ function GoogleButton({ label }) {
 export function MorlaSignInPage() {
   return (
     <AuthPageShell>
-      <Card className="w-full max-w-[540px] border-slate-200/80 bg-white shadow-[0_20px_70px_rgba(15,23,42,0.08)]">
-        <div className="space-y-6 p-6 sm:p-8">
-          <div className="space-y-2 text-center">
-            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.36em] text-slate-500">ACCOUNT ACCESS</p>
-            <h1 className="font-display text-[clamp(2rem,4.2vw,2.85rem)] leading-[0.98] tracking-[-0.06em] text-slate-950">
+      <Card className="w-full max-w-[440px] border-slate-200/80 bg-white shadow-[0_20px_70px_rgba(15,23,42,0.08)]">
+        <div className="space-y-3 p-4 sm:p-5">
+          <div className="space-y-1.5 text-center">
+            <p className="text-[0.64rem] font-semibold uppercase tracking-[0.28em] text-slate-500">ACCOUNT ACCESS</p>
+            <h1 className="font-display text-[clamp(1.45rem,3vw,2rem)] leading-[0.98] tracking-[-0.06em] text-slate-950">
               Sign in to Morla Coffee Shop
             </h1>
-            <p className="mx-auto max-w-md text-base leading-7 text-slate-600">
-              Use your email or Morla account to continue the ordering experience.
-            </p>
           </div>
 
-          <form className="grid gap-4" onSubmit={(event) => event.preventDefault()}>
+          <form className="grid gap-2.5" onSubmit={(event) => event.preventDefault()}>
             <AuthField autoComplete="username" icon={Mail} label="Email address" placeholder="you@example.com" />
             <AuthField autoComplete="current-password" icon={Lock} label="Password" placeholder="Enter your password" type="password" />
 
-            <Button className="h-12 rounded-full text-[0.98rem]" type="submit">
+            <Button className="h-10 rounded-full text-[0.9rem]" type="submit">
               Sign in
             </Button>
 
@@ -692,7 +638,7 @@ export function MorlaSignInPage() {
             <GoogleButton label="Sign in with Google" />
           </form>
 
-          <p className="text-center text-sm text-slate-600">
+          <p className="text-center text-[0.72rem] text-slate-600 sm:text-xs">
             Don&apos;t have an account?{" "}
             <Link className="font-semibold text-slate-950 transition hover:text-slate-700" href="/signup">
               Create one
@@ -707,25 +653,26 @@ export function MorlaSignInPage() {
 export function MorlaSignUpPage() {
   return (
     <AuthPageShell>
-      <Card className="w-full max-w-[540px] border-slate-200/80 bg-white shadow-[0_20px_70px_rgba(15,23,42,0.08)]">
-        <div className="space-y-6 p-6 sm:p-8">
-          <div className="space-y-2 text-center">
-            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.36em] text-slate-500">CREATE ACCOUNT</p>
-            <h1 className="font-display text-[clamp(2rem,4.2vw,2.85rem)] leading-[0.98] tracking-[-0.06em] text-slate-950">
+      <Card className="w-full max-w-[440px] border-slate-200/80 bg-white shadow-[0_20px_70px_rgba(15,23,42,0.08)]">
+        <div className="space-y-3 p-4 sm:p-5">
+          <div className="space-y-1.5 text-center">
+            <p className="text-[0.64rem] font-semibold uppercase tracking-[0.28em] text-slate-500">CREATE ACCOUNT</p>
+            <h1 className="font-display text-[clamp(1.45rem,3vw,2rem)] leading-[0.98] tracking-[-0.06em] text-slate-950">
               Sign up for Morla Coffee Shop
             </h1>
-            <p className="mx-auto max-w-md text-base leading-7 text-slate-600">
-              Create an account to save favorites, track rewards, and make reordering faster.
-            </p>
           </div>
 
-          <form className="grid gap-4" onSubmit={(event) => event.preventDefault()}>
-            <AuthField autoComplete="name" icon={User} label="Full name" placeholder="Your full name" />
-            <AuthField autoComplete="email" icon={Mail} label="Email address" placeholder="you@example.com" type="email" />
-            <AuthField autoComplete="new-password" icon={Lock} label="Password" placeholder="Create a password" type="password" />
-            <AuthField autoComplete="new-password" icon={Lock} label="Confirm password" placeholder="Repeat your password" type="password" />
+          <form className="grid gap-2.5" onSubmit={(event) => event.preventDefault()}>
+            <div className="grid gap-2 sm:grid-cols-2">
+              <AuthField autoComplete="name" icon={User} label="Full name" placeholder="Your full name" />
+              <AuthField autoComplete="email" icon={Mail} label="Email address" placeholder="you@example.com" type="email" />
+            </div>
+            <div className="grid gap-2 sm:grid-cols-2">
+              <AuthField autoComplete="new-password" icon={Lock} label="Password" placeholder="Create a password" type="password" />
+              <AuthField autoComplete="new-password" icon={Lock} label="Confirm password" placeholder="Repeat your password" type="password" />
+            </div>
 
-            <Button className="h-12 rounded-full text-[0.98rem]" type="submit">
+            <Button className="h-10 rounded-full text-[0.9rem]" type="submit">
               Sign up
             </Button>
 
@@ -734,7 +681,7 @@ export function MorlaSignUpPage() {
             <GoogleButton label="Continue with Google" />
           </form>
 
-          <p className="text-center text-sm text-slate-600">
+          <p className="text-center text-[0.72rem] text-slate-600 sm:text-xs">
             Already have an account?{" "}
             <Link className="font-semibold text-slate-950 transition hover:text-slate-700" href="/signin">
               Sign in
